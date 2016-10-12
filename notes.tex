@@ -5,7 +5,7 @@
 \usepackage{enumerate}
 \usepackage{titlesec}
 \usepackage{listings}
-\usepackage[usenames, dvipsnames]{color}
+%\usepackage[usenames, dvipsnames]{color}
 \usepackage{cleveref}
 
 \lstdefinestyle{customc}{
@@ -49,13 +49,12 @@
 
 \maketitle
 
-\section{Last Time, on Dragon Bal- Convex Optimization}
+\section{Last Class: Duality in Linear Programs}
 
-We discussed two explanations for duality in linear programs. Explanation \#1
-is that we constrain $c$ in the objective $c^Tx$ to obtain a lower bound on the
-optimal primal value. Alternatively, we can construct the Lagrangian and note that
-the unconstrained Lagrangian is a lower bound. TODO(achald): This is a pretty
-shit explanation.
+In last class, we discussed two explanations for how we formulate the dual problem in linear programs.\\
+\textit{Explanation \#1}: We multiply the corresponding dual variables to each of the constraints in the primal problem and sum the expressions. This gives us an expression similar to the primal criterion which is lower bounded. Equating this expression to the primal criterion, we get equality constraints, in addition to the inequality constraints obtained by introducing the dual variables. \\
+\textit{Explanation \#2}: Alternatively, we can construct the Lagrangian by introducing a dual variable for each constraint, multiplying it with the constraint and adding it to the criterion. We can observe that the Lagrangian (constructed this way) is a lower bound on the primal criterion, for any value of the dual variables. This method reproduces the same dual as \#1 above, but is actually completely general and applies to arbitrary optimization problems (even non-convex programs and not just linear programs)
+
 
 \section{Lagrangian}
 
@@ -76,6 +75,14 @@ It turns out that for any $u \geq 0$ and any $v$, we have that
 \begin{align*}
 L(x, u, v) = f(x) \sum_{i=1}^m u_i \underbrace{h_i(x)}_{\leq 0} + \sum_{j=1}^r v_j \underbrace{l_j(x)}_{=0} \leq f(x)
 \end{align*}
+Thus, we can observe that the Lagrangian $L(x, u, v)$ is always a lower bound for the primal criterion $f(x)$ for any value of $u \geq 0$ and $v$. An example for this is shown in the figure below:
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.3]{lagrangian.png}
+  \caption{Solid line is $f$, dashed line is $h$. Each dotted line shows $L(x,u,v)$ for different choices of $u \geq 0$ and $v$. Note that the feasible set is $x \in [-0.46, 0.46]$}
+  \label{fig:lagrangian}
+\end{figure}
 
 And so, we have that if $f^*$ be the primal optimal value and $C$ is the primal
 feasible set, then
@@ -88,7 +95,7 @@ bound on the optimal value $f^*$ for any dual feasible $u, v$ (i.e. $u \geq 0$
 and any $v$).
 
 Generally, duality will provide us with a tight lower bound in the
-\textit{convex} case, but generally will not in the \textit{non-convex} case.
+\textit{convex} case, but this need not be the true in the \textit{non-convex} case.
 
 \subsection{Example: Quadratic Program}
 Consider a quadratic program where $Q \succ 0$:
@@ -211,3 +218,8 @@ f\left(x\right) - f^{*} \leq f\left(x\right) - g\left(u,v\right)
 This implies that a zero duality gap indicates an optimal value for both the primal and the dual. In practice, this provides a stopping criterion; if $f\left(x\right) - g\left(u,v\right) \leq \epsilon$, then $f\left(x\right) - f^{*} \leq \epsilon$.
 
 \end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
