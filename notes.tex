@@ -198,14 +198,34 @@ In this example, we choose $f(x)$ to be quadratic in 2 variables, subject to $ x
   \label{fig:quad}
 \end{figure}
 
-\section{Convexity of the dual}
+\section{Lagrange Dual Problem}
+\label{sec:lagr-dual-probl}
+Given the primal problem
+\begin{alignat*}{3}
+&\min_x &&f(x) \\
+&\text{subject to } && h_i(x) \leq 0 ~~~&&\text{for } 1 \leq i \leq m \\
+&&& l_j(x) = 0 ~~~&&\text{for } 1 \leq j \leq r
+\end{alignat*}
 
-Even if the primal is non-convex, the dual problem is a convex optimizaiton
-problem in $u, v$:
+We have shown that our constructed dual function $g(u,v)$ satisfies the property $f^* \geq g(u,v)$ for all $u \geq 0$ and $v$. Thus, we get the tightest lower bound on the optimal primal criterion $f^*$ by maximizing $g(u,v)$ over all dual feasible $u,v$, yielding the Lagrange dual problem:
+\begin{alignat*}{2}
+&\max_{u,v} &&g(u,v) \\
+&\text{ subject to}&~&u \geq 0 
+\end{alignat*}
+
+Note that, if the dual optimal value is $g^*$, then
+$$ f^* \geq g^* $$
+This always holds (even if the primal problem is nonconvex) and is called the \textit{weak duality} property. 
+
+\subsection{Convexity of the dual}
+
+A very interesting property is that the dual problem is a convex optimization problem (even if the primal problem is non-convex) problem in $u, v$:
 \begin{align*}
 g(u, v) &= \min_x \{f(x) + \sum_{i=1}^m u_i h_i(x) + \sum_{j=1}^r v_j l_j(x) \} \\
         &= - \underbrace{\max_x \{-f(x) - \sum_{i=1}^m u_i h_i(x) - \sum_{j=1}^r v_j l_j(x) \}}_{\text{pointwise maximum of convex functions in } (u, v)}
 \end{align*}
+As can be observed from above, $g(u,v)$ can be expressed as the negative of pointwise maximum of convex functions in $(u,v)$. Hence, $g$ is concave in $(u,v)$, and $u \geq 0$ is a convex constraint, hence the dual problem is a concave maximization problem (or a convex minimization problem if we consider $-g$)
+
 
 So why don't we just always write down the dual problem and solve it, if it's
 convex? It turns out computing $g(u, v)$ is hard in and of itself, since it
