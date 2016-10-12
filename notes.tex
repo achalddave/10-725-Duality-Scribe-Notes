@@ -95,7 +95,13 @@ bound on the optimal value $f^*$ for any dual feasible $u, v$ (i.e. $u \geq 0$
 and any $v$).
 
 Generally, duality will provide us with a tight lower bound in the
-\textit{convex} case, but this need not be the true in the \textit{non-convex} case.
+\textit{convex} case, but this need not be the true in the \textit{non-convex} case. One such example is shown in the figure below, where the lower bound is not tight:
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.3]{tightness.png}
+  \caption{Dashed horizontal line is $f^*$, dual variable is $\lambda$ and solid line shows $g(\lambda)$}
+  \label{fig:tightness}
+\end{figure}
 
 \subsection{Example: Quadratic Program}
 Consider a quadratic program where $Q \succ 0$:
