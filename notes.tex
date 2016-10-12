@@ -218,6 +218,43 @@ where $h_i(x)$ is convex and $l_j(x)$ is affine, and a strictly feasible $x$ is
 an $x$ such that for every $i, h_i(x) < 0$ and for every
 $j, l_j(x) = 0$. This is a weak condition, and an important extension to Slater's condition maintains that strict inequalities \emph{only} need to hold over $h_i\left(x\right)$ that are \emph{not affine}.
 
+\subsection{Strong duality for Linear Programs}
+For linear programs
+\begin{itemize}
+\item The dual of the dual is the primal.
+\item Strong duality holds for the primal LP if it is feasible (refinement over Slater's conditions).
+\item Similarly, strong duality holds for the dual if it is feasible.
+\item Thus, strong duality holds for LPs, except when both primal and dual are infeasible.
+\end{itemize}
+
+\subsection{Example: SVM dual}
+The SVM problem is as follows:
+\begin{alignat*}{2}
+&\min_{\beta, \beta_{0}, \xi} && \frac{1}{2} \| \beta \|^{2}_{2} + C \sum_{i=1}^{n}\xi_{i} \\
+&\text{ subject to}&~& \xi_{i} \geq 0, i = 1, \dots, n \\
+&&& y_{i}\left( x_{i}^{T} \beta + \beta_{0} \right) \geq 1-\xi_{i}, i = 1, \dots, n
+\end{alignat*}
+
+We form the following Lagrangian with the dual variables $v,w \geq 0$:
+\begin{align*}
+L\left(\beta, \beta_{0}, \xi, v, w\right) = \frac{1}{2} \| \beta \|^{2}_{2} + C \sum_{i=1}^{n}\xi_{i} - \sum_{i=1}^{n}v_{i}\xi_{i} + \sum_{i=1}^{n} w_{i}\left(1 - \xi_{i} - y_{i}\left(x_{i}^{T}\beta + \beta_{0}\right) \right)
+\end{align*}
+
+Minimizing over $\beta, \beta_{0}, \xi$ gives the Lagrange dual:
+\begin{align*}
+g(v, w) = \begin{cases}
+-\frac{1}{2} w^{T}\tilde{X}\tilde{X}^{T}w + 1^{T}w ~& \text{if}\;\; w=C1-v, w^{T}y=0 \\
+-\infty ~&\text{otherwise}
+\end{cases}
+\end{align*}
+where $\tilde{X} = \text{diag}\left(y\right)X$. The SVM dual problem can thus be written as:
+\begin{alignat*}{2}
+&\max_{w} && -\frac{1}{2} w^{T}\tilde{X}\tilde{X}^{T}w + 1^{T}w \\
+&\text{ subject to}&~& 0 \leq w \leq C1,\;\; w^{T}y=0 \\
+\end{alignat*}
+
+Since $w=0$ is a feasible solution, Slater's conditions are satisfied and we have strong duality.
+
 \section{Duality Gap}
 The duality gap $f\left(x\right) - g\left(u,v\right)$ refers to the difference between the primal ($f$) and dual ($g$) criterion values for corresponding $x, u, v$. An important property of the duality gap is the following:
 \begin{align*}
