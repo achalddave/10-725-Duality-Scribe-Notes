@@ -133,8 +133,8 @@ Qx = -(c - u + A^T v) \label{eq:qp_semidefinite_zero_gradient}
 
 Now, there are two cases:
 \begin{enumerate}[(i)]
-\item $c - u + A^T v \in \text{col}(Q)$. Then, we can use the pseudo-inverse
-      $Q^{\dagger}$ of $Q$.
+\item $c - u + A^T v \in \text{col}(Q)$. Then, we can use the pseudo-inverse (see below)
+      $Q^{\dagger}$ of $Q$. This also implies that $P \left( c - u + A^T v \right) = 0$, where $P$ is the projection matrix onto $\text{null}\left(Q\right)$.
 \item $c - u + A^T v \not\in \text{col}(Q)$, which implies that $c - u + A^T v$
       is not orthogonal to the null space of $Q$. Then, let
       \[ c - u + A^T v = z_1 + z_2, \]
@@ -143,8 +143,7 @@ Now, there are two cases:
       \cref{eq:qp_semidefinite_zero_gradient}, and so there is no unique
       minimizer $x^*$. But $L(x, u, v)$ is quadratic in $x$, so if there is no
       minimizer of $L(x, u, v)$ in $x$, the minimum must be $L(x, u, v) =
-      -\infty$ (TODO: I think there's an alternative, easier to understand way
-      of saying this.)
+      -\infty$.
 \end{enumerate}
 
 So,
@@ -174,7 +173,16 @@ D^{-1} = \begin{bmatrix}
 \end{align*}
 
 If $A$ is not invertible, we're going to see that for $k = \text{rank}(A)$,
-$d_{k+1} = d_{k+2} = \dots = d_n = 0$. In this case, we can construct the
+$d_{k+1} = d_{k+2} = \dots = d_n = 0$. In this case, we can construct $D^{-1}$ as follows:
+\begin{align*}
+D^{-1} = \begin{bmatrix}
+\frac{1}{d_1} & 0 & \dots & 0 & 0\\
+0 & \frac{1}{d_2} & \dots & 0 & 0\\
+0 & 0 & \ddots & \vdots & 0 &\\
+0 & 0 & \dots & \frac{1}{d_k} & 0 \\
+0 & 0 & \dots & 0 & 0 \\
+\end{bmatrix}
+\end{align*}
 
 \section{Convexity of the dual}
 
@@ -200,13 +208,21 @@ at least one \textit{strictly} feasible $x \in \R^n$, then strong duality holds.
 That is, for a general convex primal problem,
 \begin{alignat*}{3}
 &\min_x &&f(x) \\
-&\text{subject to } && h_i(x) \geq 0 ~~~&&\text{for } 1 \leq i \leq m \\
+&\text{subject to } && h_i(x) \leq 0 ~~~&&\text{for } 1 \leq i \leq m \\
 &&& l_j(x) = 0 ~~~&&\text{for } 1 \leq j \leq r
 \end{alignat*}
 
 where $h_i(x)$ is convex and $l_j(x)$ is affine, and a strictly feasible $x$ is
 an $x$ such that for every $i, h_i(x) < 0$ and for every
-$j, l_j(x) = 0$.
+$j, l_j(x) = 0$. This is a weak condition, and an important extension to Slater's condition maintains that strict inequalities \emph{only} need to hold over $h_i\left(x\right)$ that are \emph{not affine}.
+
+\section{Duality Gap}
+The duality gap $f\left(x\right) - g\left(u,v\right)$ refers to the difference between the primal ($f$) and dual ($g$) criterion values for corresponding $x, u, v$. An important property of the duality gap is the following:
+\begin{align*}
+f\left(x\right) - f^{*} \leq f\left(x\right) - g\left(u,v\right)
+\end{align*}
+This implies that a zero duality gap indicates an optimal value for both the primal and the dual. In practice, this provides a stopping criterion; if $f\left(x\right) - g\left(u,v\right) \leq \epsilon$, then $f\left(x\right) - f^{*} \leq \epsilon$.
+
 \end{document}
 
 %%% Local Variables:
