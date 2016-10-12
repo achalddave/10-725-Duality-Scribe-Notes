@@ -170,7 +170,7 @@ It turns out that for any $u \geq 0$ and any $v$, we have that
 \begin{align*}
 L(x, u, v) = f(x) \sum_{i=1}^m u_i \underbrace{h_i(x)}_{\leq 0} + \sum_{j=1}^r v_j \underbrace{l_j(x)}_{=0} \leq f(x)
 \end{align*}
-Thus, we can observe that the Lagrangian $L(x, u, v)$ is always a lower bound for the primal criterion $f(x)$ for any value of $u \geq 0$ and $v$. An example for this is shown in the figure below:
+Thus, we can observe that the Lagrangian $L(x, u, v)$ is always a lower bound for the primal criterion $f(x)$ for any value of $u \geq 0$ and $v$. An example for this is shown in the figure \ref{fig:lagrangian}.
 
 \begin{figure}[h]
   \centering
@@ -190,7 +190,7 @@ bound on the optimal value $f^*$ for any dual feasible $u, v$ (i.e. $u \geq 0$
 and any $v$).
 
 Generally, duality will provide us with a tight lower bound in the
-\textit{convex} case, but this need not be the true in the \textit{non-convex} case. One such example is shown in the figure below, where the lower bound is not tight:
+\textit{convex} case, but this need not be the true in the \textit{non-convex} case. One such example is shown in the figure \ref{fig:tightness}, where the lower bound is not tight.
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.3]{tightness.png}
@@ -290,7 +290,7 @@ A^{\dagger} = V D^{\dagger} U^T
 \subsection{Example: Quadratic Program in 2D}
 \label{sec:exampl-quadr-progr}
 
-In this example, we choose $f(x)$ to be quadratic in 2 variables, subject to $ x \geq 0$. The dual function $g(u)$ is also quadratic in 2 variables, also subject to $u \geq 0$. In the figure below, we can see that the dual function $g(u)$ provides a bound on $f^*$ for every $u \geq 0$, and the largest bound $g(u)$ gives us turns out to be exactly $f^*$! In the future, we will see that this is not a coincidence and results from KKT conditions.
+In this example, we choose $f(x)$ to be quadratic in 2 variables, subject to $ x \geq 0$. The dual function $g(u)$ is also quadratic in 2 variables, also subject to $u \geq 0$. In the figure \ref{fig:quad}, we can see that the dual function $g(u)$ provides a bound on $f^*$ for every $u \geq 0$, and the largest bound $g(u)$ gives us turns out to be exactly $f^*$! In the future, we will see that this is not a coincidence and results from KKT conditions.
 
 \begin{figure}[h]
   \centering
