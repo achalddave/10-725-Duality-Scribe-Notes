@@ -184,6 +184,18 @@ D^{-1} = \begin{bmatrix}
 \end{bmatrix}
 \end{align*}
 
+\subsection{Example: Quadratic Program in 2D}
+\label{sec:exampl-quadr-progr}
+
+In this example, we choose $f(x)$ to be quadratic in 2 variables, subject to $ x \geq 0$. The dual function $g(u)$ is also quadratic in 2 variables, also subject to $u \geq 0$. In the figure below, we can see that the dual function $g(u)$ provides a bound on $f^*$ for every $u \geq 0$, and the largest bound $g(u)$ gives us turns out to be exactly $f^*$! In the future, we will see that this is not a coincidence and results from KKT conditions.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.3]{quad.png}
+  \caption{Blue dot is the optimal dual value and the red dot is the optimal primal value}
+  \label{fig:quad}
+\end{figure}
+
 \section{Convexity of the dual}
 
 Even if the primal is non-convex, the dual problem is a convex optimizaiton
