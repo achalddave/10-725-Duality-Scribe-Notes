@@ -268,9 +268,10 @@ D^{-1} = \begin{bmatrix}
 \end{align*}
 
 If $A$ is not invertible, we're going to see that for $k = \text{rank}(A)$,
-$d_{k+1} = d_{k+2} = \dots = d_n = 0$. In this case, we can construct $D^{-1}$ as follows:
+$d_{k+1} = d_{k+2} = \dots = d_n = 0$. In this case, we can construct
+a pseudo-inverse ($D^{\dagger}$) of $D$ as follows:
 \begin{align*}
-D^{-1} = \begin{bmatrix}
+D^{\dagger} = \begin{bmatrix}
 \frac{1}{d_1} & 0 & \dots & 0 & 0  & 0 & 0\\
 0 & \frac{1}{d_2} & \dots & 0 & 0  & 0 & 0\\
 0 & 0 & \ddots & \vdots & 0  & 0 & 0\\
@@ -279,6 +280,11 @@ D^{-1} = \begin{bmatrix}
 0 & 0 & \dots & 0 & 0  & \ddots & 0\\
 0 & 0 & \dots & 0 & 0  & 0 & 0\\
 \end{bmatrix}
+\end{align*}
+
+And our pseudo-inverse, then, is
+\begin{align*}
+A^{\dagger} = V D^{\dagger} U^T
 \end{align*}
 
 \subsection{Example: Quadratic Program in 2D}
